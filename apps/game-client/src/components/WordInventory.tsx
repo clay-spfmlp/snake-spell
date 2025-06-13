@@ -16,7 +16,7 @@ export const WordInventory: React.FC<WordInventoryProps> = ({
 }) => {
   const [selectedLetters, setSelectedLetters] = useState<string[]>([]);
 
-  const handleLetterClick = (letter: string, index: number) => {
+  const handleLetterClick = (letter: string) => {
     if (disabled) return;
     
     const newSelected = [...selectedLetters, letter];
@@ -74,7 +74,7 @@ export const WordInventory: React.FC<WordInventoryProps> = ({
             inventory.collectedLetters.map((collectedLetter, index) => (
               <button
                 key={`${collectedLetter.fromTileId}-${index}`}
-                onClick={() => handleLetterClick(collectedLetter.letter, index)}
+                onClick={() => handleLetterClick(collectedLetter.letter)}
                 disabled={disabled}
                 className={`
                   w-10 h-10 rounded font-bold text-white border-2 transition-all
