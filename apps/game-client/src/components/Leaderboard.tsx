@@ -7,7 +7,6 @@ import {
   PlayerAchievement
 } from '@shared/ui/leaderboards';
 import { soundManager } from '../utils/SoundManager.js';
-import { Player } from '@shared/game/entities';
 
 interface LeaderboardProps {
   onClose: () => void;

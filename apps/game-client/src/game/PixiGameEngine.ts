@@ -2,12 +2,11 @@ import * as PIXI from 'pixi.js';
 import { 
   Snake, 
   Food, 
-  Position, 
-  Direction, 
   GameConfig, 
   GameBounds,
   DIRECTIONS,
-  DEFAULT_GAME_CONFIG 
+  DEFAULT_GAME_CONFIG,
+  Position
 } from '@shared/game/snake';
 import { SnakeEntity } from './entities/SnakeEntity.js';
 import { FoodEntity } from './entities/FoodEntity.js';
@@ -140,7 +139,7 @@ export class PixiGameEngine {
     this.gameContainer.addChild(this.snake.container);
   }
 
-  private gameLoop = (deltaTime: number): void => {
+  private gameLoop = (): void => {
     if (!this.isRunning) return;
 
     const currentTime = this.app.ticker.lastTime;

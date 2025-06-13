@@ -1,5 +1,5 @@
 import * as PIXI from 'pixi.js';
-import { LetterTile } from '@shared/game/snake';
+import { LetterTile } from '@snake-word-arena/shared-types';
 
 export class LetterTileEntity {
   public container: PIXI.Container;

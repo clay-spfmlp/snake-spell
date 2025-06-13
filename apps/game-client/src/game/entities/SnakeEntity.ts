@@ -1,5 +1,5 @@
 import * as PIXI from 'pixi.js';
-import { Snake, SnakeSegment, Direction, Position, DIRECTIONS } from '@shared/game/snake';
+import { Snake, SnakeSegment, Direction, Position } from '@shared/game/snake';
 
 export class SnakeEntity {
   public container: PIXI.Container;

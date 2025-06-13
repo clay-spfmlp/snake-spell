@@ -26,25 +26,19 @@ export class SoundManager {
       return this.preloadPromises.get(soundId)!;
     }
 
-    const promise = new Promise<void>((resolve, reject) => {
+    const promise = new Promise<void>((resolve) => {
       const config = SOUND_EFFECTS[soundId];
       const audio = new Audio();
       
-      audio.addEventListener('canplaythrough', () => {
-        this.sounds.set(soundId, audio);
-        resolve();
-      });
-      
-      audio.addEventListener('error', (e) => {
-        console.warn(`Failed to load sound: ${config.file}`, e);
-        // Don't reject - just log the warning and continue
-        resolve();
-      });
+      audio.addEventListener('canplaythrough', () => resolve(), { once: true });
+      audio.addEventListener('error', () => resolve(), { once: true });
       
       audio.preload = 'auto';
       audio.src = config.file;
       audio.volume = this.calculateVolume(config);
       audio.loop = config.loop;
+      
+      this.sounds.set(soundId, audio);
     });
 
     this.preloadPromises.set(soundId, promise);

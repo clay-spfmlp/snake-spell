@@ -9,7 +9,7 @@ Object.defineProperty(global, 'WebSocket', {
     static CLOSING = 2
     static CLOSED = 3
     
-    constructor(url: string) {
+    constructor() {
       // Mock implementation
     }
     
@@ -33,4 +33,12 @@ Object.defineProperty(global, 'WebSocket', {
     removeEventListener() {}
     dispatchEvent() { return true }
   }
-}) 
+})
+
+// Mock URL.createObjectURL
+class MockURL {
+  createObjectURL = () => 'mock-url';
+  revokeObjectURL = () => {};
+}
+
+(global as any).URL = new MockURL(); 

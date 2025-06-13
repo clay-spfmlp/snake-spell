@@ -1,16 +1,12 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
-import { MultiplayerPixiEngine, MultiplayerGameEvents } from '../game/MultiplayerPixiEngine.js';
+import { MultiplayerPixiEngine } from '../game/MultiplayerPixiEngine.js';
 import { 
   GameRoom, 
   MultiplayerGameState, 
   MultiplayerCrosswordState,
 } from '@snake-word-arena/shared-types';
 import { WebSocketManager } from '../utils/WebSocketManager.js';
-import { 
-  Snake, 
-  GameConfig, 
-  LetterTile 
-} from '@shared/game/snake';
+
 
 interface PlayerStats {
   id: string;
@@ -194,12 +190,6 @@ export const MultiplayerCrosswordGame: React.FC<MultiplayerCrosswordGameProps> =
       setCurrentPlayerId(currentPlayer.id);
     }
 
-    const multiplayerEvents: MultiplayerGameEvents = {
-      onPlayerSnakeUpdate: (playerId: string, snake: any) => {
-        console.log(`Snake updated for player ${playerId}:`, snake);
-      }
-    };
-
     // Initialize multiplayer game engine instead of single-player
     gameEngineRef.current = new MultiplayerPixiEngine(
       gameContainerRef.current,
@@ -210,9 +200,7 @@ export const MultiplayerCrosswordGame: React.FC<MultiplayerCrosswordGameProps> =
         gameSpeed: 200,
         initialSnakeLength: 3,
         foodSpawnRate: 2
-      },
-      multiplayerEvents,
-      currentPlayer?.id
+      }
     );
 
     // Set initial game state
@@ -240,7 +228,7 @@ export const MultiplayerCrosswordGame: React.FC<MultiplayerCrosswordGameProps> =
       
       // Also update the game engine's current player
       if (gameEngineRef.current) {
-        gameEngineRef.current.setCurrentPlayer(currentPlayer.id);
+        gameEngineRef.current.setCurrentPlayer();
       }
     }
   }, [room.players, playerName, currentPlayerId]);
