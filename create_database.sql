@@ -1,0 +1,1 @@
+CREATE DATABASE snake_word_arena; 
