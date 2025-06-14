@@ -18,7 +18,7 @@
   ],
   "env": {
     "NODE_ENV": "production",
-    "VITE_API_URL": "snake-word-arena.vercel.app"
+    "VITE_API_URL": "snake-spell-server.onrender.com"
   },
   "headers": [ 
     {

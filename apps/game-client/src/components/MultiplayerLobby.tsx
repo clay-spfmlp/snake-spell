@@ -225,7 +225,7 @@ export const MultiplayerLobby: React.FC<MultiplayerLobbyProps> = ({ onBackToMenu
   const initializeConnection = useCallback(() => {
     if (!wsManager) {
       const newWsManager = new WebSocketManager({
-        url: `ws://${apiUrl}`
+        url: `wss://${apiUrl}`
       });
       setWsManager(newWsManager);
       setConnectionState(ConnectionState.CONNECTING);

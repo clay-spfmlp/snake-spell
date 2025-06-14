@@ -306,9 +306,9 @@ export const CrosswordSnakeGame: React.FC = () => {
         <div className="text-white text-xl mb-3">
           {gameStats.currentClue.clue}
         </div>
-        {/* <div className="text-gray-300 text-sm">
+        <div className="text-gray-300 text-sm">
           Category: {gameStats.currentClue.category} | Difficulty: {gameStats.currentClue.difficulty}
-        </div> */}
+        </div>
       </div>
 
       {/* Word Progress */}
