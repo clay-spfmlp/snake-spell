@@ -296,7 +296,7 @@ export const CrosswordSnakeGame: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center space-y-4 p-6">
-      <h1 className="text-3xl font-bold text-white mb-4">Cross Word Search</h1>
+      <h1 className="text-3xl font-bold text-white mb-4">Crossword Search</h1>
       
       {/* Current Clue */}
       <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 max-w-2xl text-center">
@@ -350,16 +350,6 @@ export const CrosswordSnakeGame: React.FC = () => {
           <div className="text-2xl font-bold text-red-400">{gameStats.wrongLetterCount}</div>
         </div>
       </div>
-
-      {/* Next Letter Hint */}
-      {gameStats.isPlaying && (
-        <div className="text-white text-center">
-          <div className="text-sm opacity-80">Looking for letter:</div>
-          <div className="text-3xl font-bold text-yellow-400">
-            {gameStats.currentClue.answer[gameStats.currentLetterIndex]}
-          </div>
-        </div>
-      )}
 
       {/* Completed Words */}
       {gameStats.completedWords.length > 0 && (
@@ -433,12 +423,12 @@ export const CrosswordSnakeGame: React.FC = () => {
         </div>
       )}
 
-      {/* Controls Instructions */}
+      {/* Controls Instructions
       <div className="text-white text-sm text-center opacity-80">
         <div className="mb-1">Use arrow keys or WASD to control the snake</div>
         <div className="mb-1">Collect the correct letters in sequence to spell the word</div>
         <div className="text-red-300">⚠️ Wrong letters will shrink your snake!</div>
-      </div>
+      </div> */}
 
       {/* Game Canvas Container */}
       <div 

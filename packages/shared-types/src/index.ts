@@ -1,15 +1,15 @@
-// Export all networking types
-export * from './networking/messages';
+// Export all networking types (type-only)
+export type * from './networking/messages.js';
 
-// Export all game types
-export * from './game/entities';
-export * from './game/snake';
-export * from './game/multiplayer';
-export * from './game/words';
-export * from './game/powerups';
-export * from './game/modes';
-export * from './game/crossword';
+// Export all game types and runtime exports
+export type * from './game/entities.js';
+export * from './game/snake.js';
+export * from './game/multiplayer.js';
+export * from './game/words.js';
+export * from './game/powerups.js';
+export * from './game/modes.js';
+export * from './game/crossword.js';
 
-// UI types
-export * from './ui/sounds';
-export * from './ui/leaderboards'; 
+// UI types and runtime exports
+export * from './ui/sounds.js';
+export * from './ui/leaderboards.js'; 

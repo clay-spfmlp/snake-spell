@@ -1,7 +1,7 @@
-import { Snake, Food, GameConfig, Position } from './snake';
-import { PlayerWordInventory, LetterTile } from './words';
-import { GameMode } from './modes';
-import { CrosswordClue, CrosswordGameState } from './crossword';
+import { Snake, Food, GameConfig, Position } from './snake.js';
+import { PlayerWordInventory, LetterTile } from './words.js';
+import { GameMode } from './modes.js';
+import { CrosswordClue, CrosswordGameState } from './crossword.js';
 
 export interface GameRoom {
   id: string;

@@ -4,7 +4,7 @@ import type {
   ConnectedMessage, 
   ChatMessage,
   ChatBroadcastMessage 
-} from './messages'
+} from './messages.js'
 
 describe('Message Types', () => {
   describe('ConnectMessage', () => {
