@@ -13,6 +13,8 @@ import {
 import { WebSocketManager, ConnectionState } from '../utils/WebSocketManager';
 import { MultiplayerCrosswordGame } from './MultiplayerCrosswordGame';
 
+const apiUrl = import.meta.env.VITE_API_URL
+
 interface MultiplayerLobbyProps {
   onBackToMenu: () => void;
 }
@@ -223,7 +225,7 @@ export const MultiplayerLobby: React.FC<MultiplayerLobbyProps> = ({ onBackToMenu
   const initializeConnection = useCallback(() => {
     if (!wsManager) {
       const newWsManager = new WebSocketManager({
-        url: `ws://${process.env.VITE_API_URL}`
+        url: `ws://${apiUrl}`
       });
       setWsManager(newWsManager);
       setConnectionState(ConnectionState.CONNECTING);

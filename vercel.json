@@ -17,9 +17,10 @@
     }
   ],
   "env": {
-    "NODE_ENV": "production"
+    "NODE_ENV": "production",
+    "VITE_API_URL": "snake-word-arena.vercel.app"
   },
-  "headers": [
+  "headers": [ 
     {
       "source": "/api/(.*)",
       "headers": [
