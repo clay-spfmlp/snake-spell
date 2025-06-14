@@ -9,7 +9,7 @@ process.chdir(__dirname);
 console.log('Current working directory:', process.cwd());
 console.log('Looking for server file...');
 
-const serverPath = path.join(__dirname, 'apps', 'game-server', 'dist', 'index.js');
+const serverPath = path.join(__dirname, 'apps', 'game-server', 'dist', 'apps', 'game-server', 'src', 'index.js');
 console.log('Server path:', serverPath);
 
 // Check if file exists
