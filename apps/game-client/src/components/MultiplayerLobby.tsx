@@ -223,7 +223,7 @@ export const MultiplayerLobby: React.FC<MultiplayerLobbyProps> = ({ onBackToMenu
   const initializeConnection = useCallback(() => {
     if (!wsManager) {
       const newWsManager = new WebSocketManager({
-        url: 'ws://localhost:3001'
+        url: `ws://${process.env.VITE_API_URL}`
       });
       setWsManager(newWsManager);
       setConnectionState(ConnectionState.CONNECTING);
