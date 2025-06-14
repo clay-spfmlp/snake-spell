@@ -10,7 +10,7 @@
     "test:run": "turbo run test:run",
     "test:coverage": "turbo run test:coverage",
     "clean": "turbo run clean",
-    "start:prod": "node apps/game-server/dist/index.js",
+    "start:prod": "node start.js",
     "type-check": "turbo run type-check"
   },
   "devDependencies": {
