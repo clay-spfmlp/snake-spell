@@ -16,27 +16,8 @@
       }
     }
   ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "apps/game-server/src/index.ts"
-    },
-    {
-      "src": "/ws",
-      "dest": "apps/game-server/src/index.ts"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "apps/game-client/dist/$1"
-    }
-  ],
   "env": {
     "NODE_ENV": "production"
-  },
-  "functions": {
-    "apps/game-server/src/index.ts": {
-      "maxDuration": 30
-    }
   },
   "headers": [
     {
