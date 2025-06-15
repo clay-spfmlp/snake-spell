@@ -28,14 +28,14 @@ export class PerformanceMonitor {
   private activeGames = 0;
   private requestCount = 0;
   private lastRequestCountReset = Date.now();
-  
+
   private monitoringInterval?: NodeJS.Timeout;
   private cleanupInterval?: NodeJS.Timeout;
 
   constructor(
     private readonly retentionPeriod: number = 2 * 60 * 60 * 1000, // FIXED: 2 hours instead of 24
     private readonly monitoringFrequency: number = 5 * 60 * 1000 // FIXED: 5 minutes instead of 1
-  ) {}
+  ) { }
 
   public start(): void {
     // Start monitoring
@@ -58,19 +58,19 @@ export class PerformanceMonitor {
     if (this.cleanupInterval) {
       clearInterval(this.cleanupInterval);
     }
-    
+
     logger.info('Performance monitoring stopped');
   }
 
   private collectMetrics(): void {
     const memUsage = process.memoryUsage();
     const cpuUsage = process.cpuUsage();
-    
+
     // Calculate CPU usage percentage (approximate)
     const cpuPercent = (cpuUsage.user + cpuUsage.system) / 1000000; // Convert to seconds
-    
+
     // Calculate average response time
-    const avgResponseTime = this.requestTimes.length > 0 
+    const avgResponseTime = this.requestTimes.length > 0
       ? this.requestTimes.reduce((sum, time) => sum + time, 0) / this.requestTimes.length
       : 0;
 
@@ -134,8 +134,8 @@ export class PerformanceMonitor {
       });
     }
 
-    // FIXED: Error rate warning using recent errors
-    if (requestsPerSecond > 0 && (this.recentErrors / requestsPerSecond) > 0.05) {
+    // FIXED: Error rate warning using recent errors with minimum threshold
+    if (requestsPerSecond > 0.5 && this.recentErrors > 5 && (this.recentErrors / requestsPerSecond) > 0.05) {
       logger.warn('High error rate detected', {
         errorRate: ((this.recentErrors / requestsPerSecond) * 100).toFixed(2),
         recentErrors: this.recentErrors,
@@ -147,9 +147,9 @@ export class PerformanceMonitor {
   private cleanupOldMetrics(): void {
     const cutoffTime = Date.now() - this.retentionPeriod;
     const initialCount = this.metrics.length;
-    
+
     this.metrics = this.metrics.filter(metric => metric.timestamp > cutoffTime);
-    
+
     const removedCount = initialCount - this.metrics.length;
     if (removedCount > 0) {
       logger.debug(`Cleaned up ${removedCount} old performance metrics`);
@@ -191,7 +191,7 @@ export class PerformanceMonitor {
     checks: Record<string, { status: string; value: any; threshold: any }>;
   } {
     const current = this.getCurrentMetrics();
-    
+
     if (!current) {
       return {
         status: 'warning',
@@ -203,20 +203,20 @@ export class PerformanceMonitor {
 
     const checks = {
       memory: {
-        status: current.memoryUsage.percentage > 90 ? 'critical' : 
-                current.memoryUsage.percentage > 80 ? 'warning' : 'healthy',
+        status: current.memoryUsage.percentage > 90 ? 'critical' :
+          current.memoryUsage.percentage > 80 ? 'warning' : 'healthy',
         value: current.memoryUsage.percentage.toFixed(2) + '%',
         threshold: '80%'
       },
       response_time: {
         status: current.averageResponseTime > 2000 ? 'critical' :
-                current.averageResponseTime > 1000 ? 'warning' : 'healthy',
+          current.averageResponseTime > 1000 ? 'warning' : 'healthy',
         value: current.averageResponseTime.toFixed(2) + 'ms',
         threshold: '1000ms'
       },
       concurrent_players: {
         status: current.concurrentPlayers >= 8 ? 'critical' :
-                current.concurrentPlayers >= 6 ? 'warning' : 'healthy',
+          current.concurrentPlayers >= 6 ? 'warning' : 'healthy',
         value: current.concurrentPlayers,
         threshold: 6
       },
@@ -230,7 +230,7 @@ export class PerformanceMonitor {
     // Determine overall status
     const statuses = Object.values(checks).map(check => check.status);
     const overallStatus = statuses.includes('critical') ? 'critical' :
-                         statuses.includes('warning') ? 'warning' : 'healthy';
+      statuses.includes('warning') ? 'warning' : 'healthy';
 
     return { status: overallStatus, checks };
   }
@@ -238,18 +238,18 @@ export class PerformanceMonitor {
   public createMiddleware() {
     return (req: any, res: any, next: any) => {
       const startTime = Date.now();
-      
+
       res.on('finish', () => {
         const responseTime = Date.now() - startTime;
         this.recordRequest(responseTime);
-        
+
         // Record errors for 4xx and 5xx status codes
         if (res.statusCode >= 400) {
           const errorType = res.statusCode >= 500 ? 'server_error' : 'client_error';
           this.recordError(errorType);
         }
       });
-      
+
       next();
     };
   }
@@ -265,11 +265,11 @@ export class PerformanceMonitor {
     recent: PerformanceMetrics[];
   } {
     const recentMetrics = this.getMetricsHistory(60 * 60 * 1000); // Last hour
-    
-    const peakMemory = recentMetrics.reduce((max, metric) => 
+
+    const peakMemory = recentMetrics.reduce((max, metric) =>
       Math.max(max, metric.memoryUsage.percentage), 0);
-    
-    const peakPlayers = recentMetrics.reduce((max, metric) => 
+
+    const peakPlayers = recentMetrics.reduce((max, metric) =>
       Math.max(max, metric.concurrentPlayers), 0);
 
     return {
