@@ -23,6 +23,7 @@ export class PerformanceMonitor {
   private requestTimes: number[] = [];
   private errorCounts: Record<string, number> = {};
   private totalErrors = 0;
+  private recentErrors = 0; // NEW: Track recent errors for rate calculation
   private concurrentPlayers = 0;
   private activeGames = 0;
   private requestCount = 0;
@@ -32,8 +33,8 @@ export class PerformanceMonitor {
   private cleanupInterval?: NodeJS.Timeout;
 
   constructor(
-    private readonly retentionPeriod: number = 24 * 60 * 60 * 1000, // 24 hours
-    private readonly monitoringFrequency: number = 60 * 1000 // 1 minute
+    private readonly retentionPeriod: number = 2 * 60 * 60 * 1000, // FIXED: 2 hours instead of 24
+    private readonly monitoringFrequency: number = 5 * 60 * 1000 // FIXED: 5 minutes instead of 1
   ) {}
 
   public start(): void {
@@ -97,16 +98,17 @@ export class PerformanceMonitor {
 
     this.metrics.push(metrics);
 
+    // FIXED: Check resource usage before resetting counters
+    this.checkResourceUsage(metrics, requestsPerSecond);
+
     // Reset counters
     this.requestTimes = [];
     this.requestCount = 0;
+    this.recentErrors = 0; // NEW: Reset recent errors
     this.lastRequestCountReset = Date.now();
-
-    // Log warnings for high resource usage
-    this.checkResourceUsage(metrics);
   }
 
-  private checkResourceUsage(metrics: PerformanceMetrics): void {
+  private checkResourceUsage(metrics: PerformanceMetrics, requestsPerSecond: number): void {
     // Memory usage warning
     if (metrics.memoryUsage.percentage > 80) {
       logger.warn('High memory usage detected', {
@@ -132,12 +134,12 @@ export class PerformanceMonitor {
       });
     }
 
-    // Error rate warning
-    if (metrics.requestsPerSecond > 0 && (metrics.errors.total / metrics.requestsPerSecond) > 0.05) {
+    // FIXED: Error rate warning using recent errors
+    if (requestsPerSecond > 0 && (this.recentErrors / requestsPerSecond) > 0.05) {
       logger.warn('High error rate detected', {
-        errorRate: ((metrics.errors.total / metrics.requestsPerSecond) * 100).toFixed(2),
-        totalErrors: metrics.errors.total,
-        requestsPerSecond: metrics.requestsPerSecond.toFixed(2)
+        errorRate: ((this.recentErrors / requestsPerSecond) * 100).toFixed(2),
+        recentErrors: this.recentErrors,
+        requestsPerSecond: requestsPerSecond.toFixed(2)
       });
     }
   }
@@ -162,6 +164,7 @@ export class PerformanceMonitor {
 
   public recordError(errorType: string): void {
     this.totalErrors++;
+    this.recentErrors++; // NEW: Track recent errors
     this.errorCounts[errorType] = (this.errorCounts[errorType] || 0) + 1;
   }
 
@@ -263,18 +266,23 @@ export class PerformanceMonitor {
   } {
     const recentMetrics = this.getMetricsHistory(60 * 60 * 1000); // Last hour
     
+    const peakMemory = recentMetrics.reduce((max, metric) => 
+      Math.max(max, metric.memoryUsage.percentage), 0);
+    
+    const peakPlayers = recentMetrics.reduce((max, metric) => 
+      Math.max(max, metric.concurrentPlayers), 0);
+
     return {
       summary: {
-        uptime: process.uptime() * 1000, // Convert to milliseconds
-        totalRequests: recentMetrics.reduce((sum, m) => sum + (m.requestsPerSecond * 60), 0),
+        uptime: process.uptime(),
+        totalRequests: this.requestCount,
         totalErrors: this.totalErrors,
-        peakConcurrentPlayers: Math.max(...recentMetrics.map(m => m.concurrentPlayers), 0),
-        peakMemoryUsage: Math.max(...recentMetrics.map(m => m.memoryUsage.percentage), 0)
+        peakConcurrentPlayers: peakPlayers,
+        peakMemoryUsage: peakMemory
       },
-      recent: recentMetrics
+      recent: recentMetrics.slice(-10) // Last 10 metrics
     };
   }
 }
 
-// Export singleton instance
-export const performanceMonitor = new PerformanceMonitor(); 
+export const performanceMonitor = new PerformanceMonitor();
