@@ -5,7 +5,7 @@ import {
   LetterTile,
   GameConfig,
   DEFAULT_GAME_CONFIG
-} from '@snake-word-arena/shared-types';
+} from '@snake-spell/shared-types';
 import { SnakeEntity } from './entities/SnakeEntity.js';
 import { FoodEntity } from './entities/FoodEntity.js';
 import { LetterTileEntity } from './entities/LetterTileEntity.js';

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { GameMode, GAME_MODES, SNAKE_COLORS } from '@snake-word-arena/shared-types';
+import { GameMode, GAME_MODES, SNAKE_COLORS } from '@snake-spell/shared-types';
 import {
   GameRoom,
   GameRoomInfo,
@@ -9,7 +9,7 @@ import {
   LeaveRoomMessage,
   PlayerReadyMessage,
   RoomListMessage
-} from '@snake-word-arena/shared-types';
+} from '@snake-spell/shared-types';
 import { WebSocketManager, ConnectionState } from '../utils/WebSocketManager';
 import { MultiplayerCrosswordGame } from './MultiplayerCrosswordGame';
 

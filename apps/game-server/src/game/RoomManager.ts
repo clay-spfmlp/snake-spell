@@ -6,7 +6,7 @@ import {
   DEFAULT_GAME_CONFIG,
   GameMode,
   SNAKE_COLORS
-} from '@snake-word-arena/shared-types';
+} from '@snake-spell/shared-types';
 import { v4 as uuidv4 } from 'uuid';
 import { MultiplayerGameEngine } from './MultiplayerGameEngine.js';
 import { WebSocket } from 'ws';

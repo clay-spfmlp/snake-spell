@@ -2,7 +2,7 @@ import {
   LetterTile, 
   Position,
   GameBounds 
-} from '@snake-word-arena/shared-types';
+} from '@snake-spell/shared-types';
 import { 
   LETTER_FREQUENCIES, 
   LETTER_COLORS,

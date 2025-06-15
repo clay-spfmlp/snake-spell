@@ -58,7 +58,7 @@ export const GameLobby: React.FC<GameLobbyProps> = ({
     <div className="game-lobby">
       {/* Header */}
       <div className="lobby-header">
-        <h1 className="lobby-title">🐍 Snake Word Arena</h1>
+        <h1 className="lobby-title">🐍 Snake Spell</h1>
         <p className="lobby-subtitle">Choose your game mode and start playing!</p>
       </div>
 

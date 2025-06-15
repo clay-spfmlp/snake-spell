@@ -1,5 +1,5 @@
 {
-  "name": "snake-word-arena",
+  "name": "snake-spell",
   "private": true,
   "scripts": {
     "build": "turbo run build",

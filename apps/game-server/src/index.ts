@@ -109,7 +109,7 @@ let gameWebSocketServer: GameWebSocketServer;
 // Server startup
 async function startServer() {
   try {
-    logger.info('Starting Snake Word Arena Server...');
+    logger.info('Starting Snake Spell Server...');
     
     // Initialize database
     if (process.env.DATABASE_URL || process.env.NEON_DATABASE_URL) {

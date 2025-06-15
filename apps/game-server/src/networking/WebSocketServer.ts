@@ -10,7 +10,7 @@ import {
   PlayerLeftMessage,
   ChatBroadcastMessage,
   PlayerColorMessage
-} from '@snake-word-arena/shared-types';
+} from '@snake-spell/shared-types';
 import { 
   MultiplayerMessage,
   JoinRoomMessage,
@@ -20,7 +20,7 @@ import {
   PlayerReadyMessage,
   GameInputMessage,
   StartGameMessage
-} from '@snake-word-arena/shared-types';
+} from '@snake-spell/shared-types';
 import { RoomManager } from '../game/RoomManager.js';
 
 export interface ClientConnection {

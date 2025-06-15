@@ -17,7 +17,7 @@ import {
   WordValidationResult,
   getRandomClues,
   generateBoardLetters
-} from '@snake-word-arena/shared-types';
+} from '@snake-spell/shared-types';
 import { v4 as uuidv4 } from 'uuid';
 import { LetterTileManager } from './LetterTileManager.js';
 import { WordValidator } from './WordValidator.js';

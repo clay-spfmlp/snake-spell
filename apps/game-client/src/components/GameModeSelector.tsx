@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { GameMode, GAME_MODES } from '@snake-word-arena/shared-types';
+import { GameMode, GAME_MODES } from '@snake-spell/shared-types';
 
 interface GameModeSelectorProps {
   onSelectMode: (gameMode: GameMode) => void;

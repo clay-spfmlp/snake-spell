@@ -1,5 +1,5 @@
 import { MultiplayerGameEngine } from './MultiplayerGameEngine.js';
-import { GameRoom, RoomPlayer, DIRECTIONS, LetterTile } from '@snake-word-arena/shared-types';
+import { GameRoom, RoomPlayer, DIRECTIONS, LetterTile } from '@snake-spell/shared-types';
 
 // Final comprehensive test for all crossword game rules
 console.log('🎯 FINAL CROSSWORD GAME RULES VALIDATION\n');

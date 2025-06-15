@@ -3,7 +3,7 @@ import { CrosswordSnakeGame } from './components/CrosswordSnakeGame'
 import { GameModeSelector } from './components/GameModeSelector'
 import { MultiplayerLobby } from './components/MultiplayerLobby'
 import { useState } from 'react'
-import { GameMode } from '@snake-word-arena/shared-types'
+import { GameMode } from '@snake-spell/shared-types'
 
 function App() {
   const [currentView, setCurrentView] = useState<'menu' | 'game-mode-select' | 'snake' | 'crossword' | 'multiplayer'>('menu');
@@ -23,7 +23,7 @@ function App() {
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
       {currentView === 'menu' && (
         <div className="flex flex-col items-center justify-center min-h-screen space-y-8">
-          <h1 className="text-6xl font-bold text-white mb-8">Snake Word Arena</h1>
+          <h1 className="text-6xl font-bold text-white mb-8">Snake Spell</h1>
           <div className="flex flex-col space-y-4">
             <button
               onClick={() => setCurrentView('game-mode-select')}

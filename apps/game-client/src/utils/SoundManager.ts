@@ -127,7 +127,7 @@ export class SoundManager {
 
   private loadSettings(): void {
     try {
-      const saved = localStorage.getItem('snake-word-arena-sound-settings');
+      const saved = localStorage.getItem('snake-spell-sound-settings');
       if (saved) {
         this.settings = { ...DEFAULT_SOUND_SETTINGS, ...JSON.parse(saved) };
       }
@@ -138,7 +138,7 @@ export class SoundManager {
 
   private saveSettings(): void {
     try {
-      localStorage.setItem('snake-word-arena-sound-settings', JSON.stringify(this.settings));
+      localStorage.setItem('snake-spell-sound-settings', JSON.stringify(this.settings));
     } catch (error) {
       console.warn('Failed to save sound settings:', error);
     }

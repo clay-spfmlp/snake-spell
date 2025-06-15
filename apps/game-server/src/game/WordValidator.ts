@@ -3,7 +3,7 @@ import {
   CollectedLetter, 
   WORD_LENGTH_BONUSES,
   LETTER_FREQUENCIES 
-} from '@snake-word-arena/shared-types';
+} from '@snake-spell/shared-types';
 
 export class WordValidator {
   private dictionary: Set<string>;

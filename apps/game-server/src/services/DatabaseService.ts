@@ -1,6 +1,6 @@
 import { neon } from '@neondatabase/serverless';
 import { logger, logError, logPerformance } from '../utils/logger.js';
-import { PlayerStats, GameResult, LeaderboardEntry } from '@snake-word-arena/shared-types';
+import { PlayerStats, GameResult, LeaderboardEntry } from '@snake-spell/shared-types';
 
 export class DatabaseService {
   private sql: any;

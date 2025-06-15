@@ -23,7 +23,7 @@ importers:
 
   apps/game-client:
     dependencies:
-      '@snake-word-arena/shared-types':
+      '@snake-spell/shared-types':
         specifier: workspace:*
         version: link:../../packages/shared-types
       pixi.js:
@@ -102,7 +102,7 @@ importers:
       '@neondatabase/serverless':
         specifier: ^0.7.2
         version: 0.7.2
-      '@snake-word-arena/shared-types':
+      '@snake-spell/shared-types':
         specifier: workspace:*
         version: link:../../packages/shared-types
       compression:

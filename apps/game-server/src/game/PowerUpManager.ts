@@ -4,8 +4,8 @@ import {
   POWER_UP_DEFINITIONS, 
   POWER_UP_SPAWN_RATES,
   ActivePowerUp 
-} from '@snake-word-arena/shared-types';
-import { Position } from '@snake-word-arena/shared-types';
+} from '@snake-spell/shared-types';
+import { Position } from '@snake-spell/shared-types';
 
 export class PowerUpManager {
   private activePowerUps: Map<string, PowerUp> = new Map();

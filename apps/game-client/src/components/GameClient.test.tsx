@@ -6,7 +6,7 @@ describe('GameClient', () => {
   it('should render the title', () => {
     render(<GameClient />)
     
-    expect(screen.getByText('🐍 Snake Word Arena')).toBeInTheDocument()
+    expect(screen.getByText('🐍 Snake Spell')).toBeInTheDocument()
   })
 
   it('should render connection form initially', () => {

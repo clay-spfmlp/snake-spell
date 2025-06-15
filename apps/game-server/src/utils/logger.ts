@@ -18,7 +18,7 @@ export const logger = winston.createLogger({
     winston.format.json()
   ),
   defaultMeta: { 
-    service: 'snake-word-arena-server',
+    service: 'snake-spell-server',
     version: process.env.npm_package_version || '1.0.0'
   },
   transports: [

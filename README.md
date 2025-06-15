@@ -1,4 +1,4 @@
-# 🐍 Snake Word Arena
+# 🐍 Snake Spell
 
 A multiplayer browser-based Snake game with word collection mechanics. Built with modern web technologies in a Turborepo monorepo.
 
@@ -30,7 +30,7 @@ A multiplayer browser-based Snake game with word collection mechanics. Built wit
 ## 📁 Project Structure
 
 ```
-snake-word-arena/
+snake-spell/
 ├── apps/
 │   ├── game-client/          # React frontend
 │   └── game-server/          # Node.js backend
@@ -52,7 +52,7 @@ snake-word-arena/
 1. **Clone and install dependencies**:
    ```bash
    git clone <your-repo>
-   cd snake-word-arena
+   cd snake-spell
    pnpm install
    ```
 

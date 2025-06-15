@@ -1,5 +1,5 @@
 {
-  "name": "@snake-word-arena/game-client",
+  "name": "@snake-spell/game-client",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -16,7 +16,7 @@
     "test:ui": "vitest --ui"
   },
   "dependencies": {
-    "@snake-word-arena/shared-types": "workspace:*",
+    "@snake-spell/shared-types": "workspace:*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "zustand": "^4.4.7",

@@ -4,7 +4,7 @@ import {
   GameRoom, 
   MultiplayerGameState, 
   MultiplayerCrosswordState,
-} from '@snake-word-arena/shared-types';
+} from '@snake-spell/shared-types';
 import { WebSocketManager } from '../utils/WebSocketManager.js';
 
 

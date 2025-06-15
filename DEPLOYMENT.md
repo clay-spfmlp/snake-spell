@@ -1,8 +1,8 @@
-# Snake Word Arena - Production Deployment Guide
+# Snake Spell - Production Deployment Guide
 
 ## Overview
 
-Snake Word Arena is a production-ready multiplayer word game built with:
+Snake Spell is a production-ready multiplayer word game built with:
 - **Frontend**: React + TypeScript + Vite + PixiJS + Tailwind CSS
 - **Backend**: Node.js + Express + WebSocket + TypeScript
 - **Database**: Neon PostgreSQL (serverless)

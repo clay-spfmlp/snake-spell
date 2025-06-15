@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { PlayerWordInventory, LETTER_COLORS } from '@snake-word-arena/shared-types';
+import { PlayerWordInventory, LETTER_COLORS } from '@snake-spell/shared-types';
 
 interface WordInventoryProps {
   inventory: PlayerWordInventory;

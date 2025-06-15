@@ -1,12 +1,12 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { PixiGameEngine, GameEvents } from '../game/PixiGameEngine.js';
-import { Food } from '@snake-word-arena/shared-types';
+import { Food } from '@snake-spell/shared-types';
 import { 
   CrosswordClue, 
   CrosswordGameState, 
   getRandomClues, 
   generateBoardLetters 
-} from '@snake-word-arena/shared-types';
+} from '@snake-spell/shared-types';
 
 interface CrosswordGameStats extends CrosswordGameState {
   isGameOver: boolean;
